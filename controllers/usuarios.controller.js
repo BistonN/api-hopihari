@@ -4,18 +4,21 @@ const jwt = require("jsonwebtoken");
 
 exports.atualizarUsuario = async (req, res) => {
     try {
-        const idUsuario = Number(req.params.id);
         const resultado = await mysql.execute(
-            `UPDATE users
-                SET name     = ?,
-                    email    = ?,
-                    password = ?
-              WHERE id = ?;`,
+            `UPDATE users 
+                SET first_name = ?,
+                    last_name  = ?,
+                    phone      = ?,
+                    birth_date = ?,
+                    email      = ?
+              WHERE id		   = ?;`,
             [
-                req.body.name,
+                req.body.first_name,
+                req.body.last_name,
+                req.body.phone,
+                req.body.birth_date,
                 req.body.email,
-                req.body.password,
-                idUsuario
+                res.locals.idUsuario
             ]
         );
         return res.status(201).send({
