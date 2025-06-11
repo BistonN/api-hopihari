@@ -9,4 +9,10 @@ router.post("/:idRide",
     filaController.entrarFila 
 );
 
+router.delete("/sair/:idBrinquedo",
+    login.required,
+    filaController.lerNotificacao,
+    filaController.sairFila
+);
+
 module.exports = router;
